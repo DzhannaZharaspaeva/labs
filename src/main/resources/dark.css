@@ -1,4 +1,12 @@
 body {
-    background-color: SpringGreen;
+    background-color: springgreen;
     color: white;
+}
+
+.present {
+    font-weight: bold;
+}
+
+.absent {
+    font-style: italic;
 }
