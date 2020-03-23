@@ -22,6 +22,6 @@ fun RBuilder.RList(students: Array<Student>, state:  Array<Boolean>, onClick: (I
 3.Также необходимо было  поднять состояние компонента RStudentList в созданный компонент 
 ![код](https://sun4-10.userapi.com/u9B-PMwOog1LibT8z7MBbO-_9uPpoPaWIZAXSQ/Vck71hfTToo.jpg) <br>
 4. Результат работы программы продемонстрирован на следующих изображениях: 
-![коод](https://sun4-16.userapi.com/tR7wrCGEVtejesm2eaXDv_U3ObdI4x-_ArckKg/M0NmdhdcviE.jpg)
-![кд](https://sun4-15.userapi.com/bb2_-1N5AFF-AI3tsjwNGF9DDN7gi8-M_JqceQ/1u9mMwzeNes.jpg)
+![коод](https://sun4-16.userapi.com/qAYQyKd7GjD50l9fZf6FHZNmOsTtx-l1E7jmpA/fVb8HX9i7U8.jpg)
+![кд](https://sun4-16.userapi.com/aENpRpAf-4Ni6Af5DEjO7ojWaz_pg58RB20X6A/aAEEmcC36ec.jpg)
 
