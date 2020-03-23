@@ -6,11 +6,11 @@ import react.dom.li
 interface RStudentListProps : RProps {
     var students: Array<Student>
 }
-fun RBuilder.rList(students: Array<Student>, state:  Array<Boolean>, onClick: (Int) -> (Event) -> Unit) =
+fun RBuilder.RList(students: Array<Student>, state:  Array<Boolean>, onClick: (Int) -> (Event) -> Unit) =
     child(functionalComponent<RStudentListProps> { props ->
         props.students.forEachIndexed { index, student ->
             li {
-                rstudent(student, state[index], onClick(index))
+                RStudent(student, state[index], onClick(index))
             }
         }
     }){

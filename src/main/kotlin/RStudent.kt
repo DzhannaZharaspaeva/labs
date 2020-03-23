@@ -21,7 +21,7 @@ val RFStudent =
         }
     }
 
-fun RBuilder.rstudent(student: Student, present: Boolean, onClick:(Event)-> Unit) =
+fun RBuilder.RStudent(student: Student, present: Boolean, onClick:(Event)-> Unit) =
     child(RFStudent) {
         attrs.student = student
         attrs.present = present

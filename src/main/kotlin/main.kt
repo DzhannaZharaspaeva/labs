@@ -1,3 +1,4 @@
+import data.studentList
 import react.dom.h1
 import react.dom.render
 import kotlin.browser.document
@@ -7,6 +8,6 @@ fun main() {
         h1 {
             +"Students"
         }
-        Job()
+        RJob("Chemistry", studentList.toTypedArray())
     }
 }

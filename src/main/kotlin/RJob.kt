@@ -23,19 +23,20 @@ class RJobList : RComponent<RJobProps, RStudentListState>() {
                    +props.job
                 }
                 ol {
-                    rList(props.studs, state.present, byIndex())
+                    RList(props.studs, state.present, byIndex())
                 }
             }
-
     fun byIndex(): (Int) -> (Event) -> Unit = this::onClick
+
     fun onClick(index: Int): (Event) -> Unit = {
         setState {
             present[index] = !present[index]
         }
     }
 }
-fun RBuilder.Job() =
+fun RBuilder.RJob(job: String, studs: Array<Student>) =
     child(RJobList::class) {
-        attrs.job = "Chemistry"
-        attrs.studs = studentList.toTypedArray()
+        attrs.job = job
+        attrs.studs = studs
     }
+
