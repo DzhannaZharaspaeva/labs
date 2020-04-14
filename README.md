@@ -1,22 +1,21 @@
-# Сдача 3 лабораторной работы
-1. Сделала отдельную функцию для создания радиокнопок без повторения кода
+# Сдача 6 лабораторной работы
+1. Перенесла занятия из AppProps в AppState
 
 ```
-private fun TagConsumer<HTMLElement>.radioButtons() {
-    val colors = arrayOf("Green", "DeepPink", "Aqua")
-    colors.forEach {
-        input(radio, name = "radioButtons") {
-            attributes += "value" to it
-            onClickFunction = {
-              val col=  document.getElementById("root")!!
-                col.setAttribute("style", "color: ${value}")
-            }
-        }
-        br()
-    }
+interface AppProps : RProps {
+    var students: Array<Student>
+
+}
+
+interface AppState : RState {
+    var job: Array<Job>
+    var presents: Array<Array<Boolean>>
+    var newjob: String
 }
 ```
-2. В main передаем эту функцию <br>
-![тут должен быть код](https://sun4-16.userapi.com/49ph67w1RQ6Mfm5tK_-vDprjTb2UutDDI94A0A/lCfTUlgR9Qw.jpg)
-3. Работа программы представлена на следующем изображении <br>
-![код](https://sun4-10.userapi.com/634hd7Q6WmzXqGlZpKjDp8YcMK-E4jHe263dew/iit9wrpeNsY.jpg)
+2. Также, по заданию добавила функциональный компонент fAddJob <br>
+![тут должен быть код](https://sun4-10.userapi.com/PkTEFk9rK_gua0tvzcN0tXNQwOGvkRxh-E45iA/uRMEEWjmies.jpg)
+Выполнение работы представлено ниже <br>
+![тут должен](https://sun4-15.userapi.com/g2HuOqeedKEutwYV3gUStKKQbAMMdaFkTqKa6A/UdY-E4XIeTw.jpg)
+3. Далее работа программы по добалению нового премета представлена на следующем изображении <br>
+![код](https://sun4-16.userapi.com/npGH5ckFgFakKD3HU3wjsEqTTZF2L9E2sXesPA/PxeGdgW9J0U.jpg)
