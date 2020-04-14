@@ -10,8 +10,8 @@ data class Job(
 
 val jobList =
     arrayOf(
-        Job ("Объектно-ориентированное программирование"),
-        Job("Технологии обработки информации"),
-        Job("Электротехника")
+        Job ("Chimestry"),
+        Job("Biology"),
+        Job("Programming")
 
     )

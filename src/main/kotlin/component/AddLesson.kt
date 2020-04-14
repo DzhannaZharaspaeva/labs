@@ -26,7 +26,7 @@ val fAddJob =functionalComponent<AppLessonProps>() {
             button { +"Добавить"
                 attrs.onClickFunction= {
                     val namejob = document.getElementById("job") as HTMLInputElement
-                props.click
+                props.click(namejob.value)
                 }
             }
         }
