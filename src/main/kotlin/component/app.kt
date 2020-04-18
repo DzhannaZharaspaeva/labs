@@ -21,6 +21,7 @@ interface RouteNumberResult : RProps {
 
 class App : RComponent<AppProps, AppState>() {
     override fun componentWillMount() {
+        state.job = jobList
         state.presents = Array(state.job.size) {
             Array(props.students.size) { false }
         }
@@ -31,8 +32,9 @@ class App : RComponent<AppProps, AppState>() {
             h1 { +"App" }
             nav {
                 ul {
-                    li { navLink("/lessons") { +"Lessons" } }
+                    li { navLink("/job") { +"Job" } }
                     li { navLink("/students") { +"Students" } }
+                    li { navLink("/AddLesson"){+"AddLesson"} }
                 }
             }
         }
