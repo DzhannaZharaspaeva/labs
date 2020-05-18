@@ -1,8 +1,4 @@
-# Сдача 3 лабораторной работы
-1. Сделала отдельную функцию для создания радиокнопок без повторения кода
-
-```
-private fun TagConsumer<HTMLElement>.radioButtons() {
+# Сдача 3 лабораторной работы1. Сделала отдельную функцию для создания радиокнопок без повторения коprivate fun TagConsumer<HTMLElement>.radioButtons() {
     val colors = arrayOf("Green", "DeepPink", "Aqua")
     colors.forEach {
         input(radio, name = "radioButtons") {
