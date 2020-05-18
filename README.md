@@ -53,11 +53,12 @@ fun <O> fanyEdit(
 ```
 4. Выполнение добавления и удаления студента видно на следующих скриншотах <br>
    1. Добавление студента <br>
-![тут должен быть код](https://yadi.sk/i/LpHihhx0lh0NFQ)
+![тут должен быть код](https://sun4-12.userapi.com/tUTClnG9mynbeaPTdrtv2qbTZ1eYaj_TQjLdvw/sSZBFBb9NyU.jpg)
    2. Удаление студента <br>
-![тут должен быть](https://yadi.sk/i/U7Bvbeyw0XYJvQ) 
+![тут должен быть](https://sun4-17.userapi.com/liTTC41oa3slaSeMQpjsKReh7VKEEP_MxhalWg/AOvg4BGOwbE.jpg) 
 5. Выполнение добавления и удаления предмета <br>
    1. Добавление предмета <br>
-![тут должен](https://yadi.sk/i/gXdhKZDp6aSozg) 
+![тут должен](https://sun4-15.userapi.com/SVKqN0mBZBxq-0XTze3SwS-of0gzyZdhbDBC4w/uplT42nw-c4.jpg) 
    2. Удаление предмета <br>
-![код](https://yadi.sk/i/ppHuQ6CXqJx6ww)
+![код](https://sun4-10.userapi.com/EnVlyOm5NIr9HYVuLo6QtRqs7OmERPxJkLCZPw/PiEw-g-VGl0.jpg)
+Также в данной лаюораторной работе была использована функция добавления предмета/студента, которая была разработана в 6 лабораторной работе, в app.
