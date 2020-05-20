@@ -3,9 +3,8 @@
 ## Ход работы:
 1. Сделала компонент для редактирования списка студента, здесь реализованы два инпута для ввода текста, для которых id обозначен как AddSurname и AddFirstname для имени и фамилии соответственно
 ```
-interface studentredactProps : RProps {}
 val fstudentredact =
-    functionalComponent<studentredactProps> { props ->
+    functionalComponent<RProps> { props ->
         input(text) {
             attrs.placeholder = "Введите Имя студента"
             attrs.id ="AddFirstname"
@@ -18,9 +17,8 @@ val fstudentredact =
 ```
 2. Сделала компонент для редактирования списка занятий, здесь реализован инпут для ввода текста, для которого id обозначен как AddJob для названия занятия
 ```
-interface jobredactProps : RProps {}
 val fjobredact =
-    functionalComponent<jobredactProps> { props ->
+    functionalComponent<RProps> { props ->
         input(text)  {
             attrs.placeholder = "Введите название предмета"
             attrs.id ="AddJob"
