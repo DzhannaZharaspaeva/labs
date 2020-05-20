@@ -5,10 +5,9 @@ import kotlinx.html.id
 import react.*
 import react.dom.input
 
-interface jobredactProps : RProps {}
 
 val fjobredact =
-    functionalComponent<jobredactProps> { props ->
+    functionalComponent<RProps> { props ->
         input(text)  {
             attrs.placeholder = "Введите название предмета"
             attrs.id ="AddJob"

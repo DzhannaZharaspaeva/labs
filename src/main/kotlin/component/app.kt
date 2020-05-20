@@ -10,8 +10,6 @@ import react.dom.*
 import react.router.dom.*
 import kotlin.browser.document
 
-interface AppProps : RProps {}
-
 interface AppState : RState {
     var jobs: Array<Job>
     var students: Array<Student>
@@ -22,7 +20,7 @@ interface RouteNumberResult : RProps {
     var number: String
 }
 
-class App : RComponent<AppProps, AppState>() {
+class App : RComponent<RProps, AppState>() {
     override fun componentWillMount() {
         state.jobs = jobList
         state.students = studentList
@@ -153,7 +151,6 @@ class App : RComponent<AppProps, AppState>() {
             }
         }
     }
-
     fun deleteStudent(index: Int): (Event) -> Unit {
         return { _: Event ->
             var deleteStud = state.students.toMutableList().apply { removeAt(index) }.toTypedArray()
@@ -168,7 +165,6 @@ class App : RComponent<AppProps, AppState>() {
             }
         }
     }
-
     fun deleteJob(index: Int): (Event) -> Unit {
         return { _: Event ->
             var deleteJ = state.jobs.toMutableList().apply { removeAt(index) }.toTypedArray()
@@ -179,7 +175,6 @@ class App : RComponent<AppProps, AppState>() {
             }
         }
     }
-
 }
 
 fun RBuilder.app(

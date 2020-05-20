@@ -5,8 +5,7 @@ import react.*
 import react.dom.li
 
 interface studentnameProps : RProps {
-    var student: Student
-}
+    var student: Student }
 
 val fstudentname =
     functionalComponent<studentnameProps> { props ->

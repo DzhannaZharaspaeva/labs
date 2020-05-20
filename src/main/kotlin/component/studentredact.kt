@@ -5,10 +5,8 @@ import kotlinx.html.id
 import react.*
 import react.dom.input
 
-interface studentredactProps : RProps {}
-
 val fstudentredact =
-    functionalComponent<studentredactProps> { props ->
+    functionalComponent<RProps> { props ->
         input(text) {
             attrs.placeholder = "Введите Имя студента"
             attrs.id ="AddFirstname"
