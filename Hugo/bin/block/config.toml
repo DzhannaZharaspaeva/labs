@@ -1,0 +1,16 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My site about whales"
+theme = "dimension"
+# Make sure setting a following option for search bar to work
+[outputs]
+    section = ["JSON", "HTML"]
+    taxonomy = ["JSON", "HTML"]
+
+[params]
+[languages]
+[languages.en]
+languagename="English"
+name= "Whales"
+weight =5
+url="/posts/"
