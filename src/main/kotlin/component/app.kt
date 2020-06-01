@@ -2,7 +2,8 @@ package component
 
 import data.*
 import hoc.withDisplayName
-import org.w3c.dom.HTMLButtonElement
+import kotlinx.html.InputType
+import kotlinx.html.id
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import react.*
@@ -47,41 +48,39 @@ class App : RComponent<RProps, AppState>() {
             route("/jobs",
                 exact = true,
                 render = {
-                    anyList(state.jobs, "Jobs", "/jobs")
+                    anyList(state.jobs, "Jobs", "/jobs", {} )
                 }
             )
             route("/students",
                 exact = true,
                 render = {
-                    anyList(state.students, "Students", "/students")
+                    anyList(state.students, "Students", "/students", {} )
                 }
             )
             route("/studentredact",
                 exact = true,
                 render = {
                     anyEdit(
-                        RBuilder::studentname,
-                        RBuilder::studentredact,
+                            renderEditStudents(),
                         RBuilder::anyList,
                         state.students,
                         addStudent(),
                         "Students",
                         "/students",
-                        { deleteStudent(it) }
+                        deleteStudent()
                     )
                 })
             route("/jobredact",
                 exact = true,
                 render = {
                     anyEdit(
-                        RBuilder::jobname,
-                        RBuilder::jobredact,
+                            renderEditJob(),
                         RBuilder::anyList,
                         state.jobs,
                         addJob(),
                         "Jobs",
                         "/jobs",
-                        { deleteJob(it) }
+                        deleteJob()
                     )
                 })
             route("/jobs/:number",
@@ -128,54 +127,74 @@ class App : RComponent<RProps, AppState>() {
         }
     }
 
-    fun addJob(): (Event) -> Unit {
-        return { _: Event ->
+    fun addJob(): (Event) -> Unit =  {
             val addJ = document.getElementById("AddJob") as HTMLInputElement
+            val addJob = state.presents.mapIndexed { index, _ ->
+                state.presents[index].plus(arrayOf(false))
+            }.toTypedArray()
             setState {
                 jobs += Job(addJ.value)
-                presents += arrayOf(
-                    Array(state.students.size) { false })
+                presents = addJob
             }
-        }
     }
 
-    fun addStudent(): (Event) -> Unit {
-        return { _: Event ->
+    fun addStudent(): (Event) -> Unit = {
             val addSF = document.getElementById("AddFirstname") as HTMLInputElement
             val addSS = document.getElementById("AddSurname") as HTMLInputElement
             setState {
                 students += Student(addSF.value, addSS.value)
-                presents.mapIndexed { index, _ ->
-                    presents[index] += arrayOf(false)
-                }
+                presents += arrayOf(Array(state.students.size){false})
             }
+    }
+    fun deleteStudent(): (Int) -> Unit =  {
+        val redactStud = state.students.toMutableList().apply {
+            removeAt(it) }
+            .toTypedArray()
+        val editedPresents = state.presents.toMutableList().apply {
+            removeAt(it)}
+            .toTypedArray()
+        setState{
+            students = redactStud
+            presents= editedPresents
         }
     }
-    fun deleteStudent(index: Int): (Event) -> Unit {
-        return { _: Event ->
-            var deleteStud = state.students.toMutableList().apply { removeAt(index) }.toTypedArray()
-            var newpresents = state.presents.mapIndexed { id, _ ->
-                state.presents[id].toMutableList().apply {
+
+    fun deleteJob(): (Int)  -> Unit = {
+            val deleteJ = state.jobs.toMutableList().apply { removeAt(it) }.toTypedArray()
+            val newpresents =state.presents.mapIndexed { index, _ ->
+                state.presents[index].toMutableList().apply {
                     removeAt(index)
                 }.toTypedArray()
-            }
-            setState {
-                students = deleteStud
-                presents = newpresents.toTypedArray()
-            }
-        }
-    }
-    fun deleteJob(index: Int): (Event) -> Unit {
-        return { _: Event ->
-            var deleteJ = state.jobs.toMutableList().apply { removeAt(index) }.toTypedArray()
-            var newpresents = state.presents.toMutableList().apply { removeAt(index) }.toTypedArray()
+            }.toTypedArray()
             setState {
                 jobs = deleteJ
                 presents = newpresents
             }
         }
+
+    fun renderEditStudents () : RBuilder.() -> ReactElement {
+        return {
+            input(InputType.text) {
+                attrs.placeholder = "Введите Имя студента"
+                attrs.id = "AddFirstname"
+            }
+            input(InputType.text) {
+                attrs.placeholder = "Введите Фамилию студента"
+                attrs.id = "AddSurname"
+            }
+        }
     }
-}
+
+    fun renderEditJob() : RBuilder.() -> ReactElement {
+        return {
+            input(InputType.text) {
+                attrs.placeholder = "Введите название предмета"
+                attrs.id = "AddJob"
+            }
+        }
+    }
+
+    }
 
 fun RBuilder.app(
 ) =
