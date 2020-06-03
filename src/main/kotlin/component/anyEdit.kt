@@ -1,49 +1,52 @@
 package component
 
 import hoc.withDisplayName
+import kotlinx.html.classes
+import kotlinx.html.id
 import kotlinx.html.js.onClickFunction
+import kotlinx.html.style
+import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
+import kotlin.browser.document
 
-interface AnyEditProps<O> : RProps {
-    var subObjs: Array<O>
-    var Add: (Event) -> Unit
+interface AnyEditProps<S> : RProps {
+    var subobjs: Array<S>
     var name: String
     var path: String
-    var del : (Int) -> Unit
+    var addFunc: (Event) -> Unit
+    var delFunc: (Int) -> (Event) -> Unit
 }
-fun <O> fanyEdit(
-        rEdit : RBuilder.() -> ReactElement,
-    rComponent: RBuilder.(Array<O>, String, String,(Int) -> Unit) -> ReactElement
+fun <S> fAnyEdit(
+        rEdit: RBuilder.((Event) -> Unit) -> ReactElement,
+        rComponent: RBuilder.(Array<S>, String, String) -> ReactElement
 ) =
-    functionalComponent<AnyEditProps<O>> { props ->
-        h3 { +"Redact" }
-        rEdit()
-        ul {
-            button {
-                +"Add"
-                attrs.onClickFunction = props.Add
-            }
-            rComponent(props.subObjs, props.name, props.path,props.del)
-        }
-    }
+        functionalComponent<AnyEditProps<S>> {
+            div {
+                h2 { +"Редактирование" }
+                rEdit(it.addFunc)
+                it.subobjs.mapIndexed { index, s ->
+                    li { +"$s"
+                        button {
+                            +"Удалить"
+                            attrs.onClickFunction = it.delFunc(index) } } }
+                rComponent(it.subobjs, it.name, it.path) } }
 
-fun <O> RBuilder.anyEdit(
-        rEdit: RBuilder.() -> ReactElement,
-    rComponent: RBuilder.(Array<O>, String, String, (Int)-> Unit) -> ReactElement,
-    subObjs: Array<O>,
-    Add: (Event) -> Unit,
-    name: String,
-    path: String,
-    del : (Int) -> Unit
+fun <S> RBuilder.anyEdit(
+        rEdit: RBuilder.((Event) -> Unit) -> ReactElement,
+        rComponent: RBuilder.(Array<S>, String, String) -> ReactElement,
+        subobjs: Array<S>,
+        name: String,
+        path: String,
+        addFunc: (Event) -> Unit,
+        delFunc: (Int) -> (Event) -> Unit
 ) = child(
-    withDisplayName("EditAny", fanyEdit (rEdit,rComponent))
+        withDisplayName("Edit", fAnyEdit<S>(rEdit, rComponent))
 ) {
-    attrs.subObjs = subObjs
-    attrs.Add = Add
+    attrs.subobjs = subobjs
     attrs.name = name
     attrs.path = path
-    attrs.del = del
+    attrs.addFunc = addFunc
+    attrs.delFunc = delFunc
 }
-

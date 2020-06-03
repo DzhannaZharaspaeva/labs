@@ -6,28 +6,28 @@ import kotlinx.html.js.onClickFunction
 import org.w3c.dom.events.Event
 import data.*
 
-interface JobProps : RProps {
-    var job: Job
+interface LessonProps : RProps {
+    var lesson: Lesson
     var present: Boolean
     var onClick: (Event)->Unit
 }
 
 val fLesson =
-    functionalComponent<JobProps> {
+    functionalComponent<LessonProps> {
         span (
             if(it.present) "present" else "absent"
         ){
-            +it.job.name
+            +it.lesson.name
             attrs.onClickFunction = it.onClick
         }
     }
 
 fun RBuilder.lesson(
-    job: Job,
+    lesson: Lesson,
     present: Boolean,
     onClick: (Event)->Unit
 ) = child(fLesson) {
-        attrs.job = job
+        attrs.lesson = lesson
         attrs.present = present
         attrs.onClick = onClick
     }
